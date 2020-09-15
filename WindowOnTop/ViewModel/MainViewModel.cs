@@ -1,10 +1,11 @@
 using System;
 using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WindowOnTop.Util;
+using WindowOnTop.Windows;
+using Point = System.Windows.Point;
 
 namespace WindowOnTop.ViewModel
 {
@@ -37,28 +38,32 @@ namespace WindowOnTop.ViewModel
         private void Init()
         {
             k_hook=new KeyboardHook();
-            //k_hook.KeyPressEvent += K_hook_KeyPressEvent;
+            k_hook.KeyPressEvent += K_hook_KeyPressEvent;
             k_hook.KeyDownEvent += K_hook_KeyDownEvent;
             k_hook.Start();
         }
 
         private void K_hook_KeyDownEvent(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyValue==(int)Keys.E && Control.ModifierKeys==Keys.Shift )
+            Windows.Point p = new Windows.Point();  // Û±ÍŒª÷√
+
+            if (e.KeyValue==(int)Keys.E && (int)Control.ModifierKeys==((int)Keys.Alt+(int)Keys.Control))
             {
-                if (GetCursorPos(out Point p))
+                if (WindowsAPI.GetCursorPos(ref p))
                 {
-                    IntPtr ptr = WindowFromPoint(p);
-                    SetWindowPos(ptr, -1, 0, 0, 0, 0, 1 | 2);
+                    IntPtr ptr = WindowsAPI.WindowFromPoint(p);
+
+                    WindowsAPI.SetWindowPos(ptr, new IntPtr(-1), 0, 0, 0, 0, 1 | 2);
                 }
             }
 
-            if (e.KeyValue==(int)Keys.R && Control.ModifierKeys==Keys.Shift)
+            if (e.KeyValue == (int)Keys.R && (int)Control.ModifierKeys == ((int)Keys.Alt + (int)Keys.Control))
             {
-                if (GetCursorPos(out Point p))
+                if (WindowsAPI.GetCursorPos(ref p))
                 {
-                    IntPtr ptr = WindowFromPoint(p);
-                    SetWindowPos(ptr, 1, 0, 0, 0, 0, 1 | 2);
+                    IntPtr ptr =WindowsAPI.WindowFromPoint(p);
+
+                    WindowsAPI.SetWindowPos(ptr, new IntPtr(1), 0, 0, 0, 0, 1 | 2);
                 }
             }
         }
@@ -73,15 +78,6 @@ namespace WindowOnTop.ViewModel
         {
 
         }
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr WindowFromPoint(Point Point);
-
-        [DllImport("user32.dll")]
-        internal static extern bool GetCursorPos(out Point lpPoint);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        private static extern int SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int Width, int Height, int flags);
 
     }
 }
