@@ -44,7 +44,7 @@ namespace WindowOnTop.ViewModel
 
         private void K_hook_KeyDownEvent(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            if (e.KeyValue==(int)Keys.E && Control.ModifierKeys==Keys.Control )
+            if (e.KeyValue==(int)Keys.E && Control.ModifierKeys==Keys.Shift )
             {
                 if (GetCursorPos(out Point p))
                 {

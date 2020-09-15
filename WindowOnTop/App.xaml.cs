@@ -37,7 +37,7 @@ namespace WindowOnTop
             base.OnStartup(e);
             DispatcherHelper.Initialize();
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
-            //ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
             StartupUri=new Uri("MainWindow.xaml",UriKind.RelativeOrAbsolute);
         }
 
