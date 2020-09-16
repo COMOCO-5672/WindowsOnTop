@@ -43,7 +43,7 @@ namespace WindowOnTop.ViewModel
             k_hook.Start();
         }
 
-        private void K_hook_KeyDownEvent(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void K_hook_KeyDownEvent(object sender, KeyEventArgs e)
         {
             Windows.Point p = new Windows.Point();  // Û±ÍŒª÷√
 
