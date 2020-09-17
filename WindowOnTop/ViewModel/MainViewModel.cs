@@ -47,7 +47,7 @@ namespace WindowOnTop.ViewModel
         {
             Windows.Point p = new Windows.Point();  // Û±ÍŒª÷√
 
-            if (e.KeyValue==(int)Keys.E && (int)Control.ModifierKeys==((int)Keys.Alt+(int)Keys.Control))
+            if (e.KeyValue==(int)Keys.E && (int)Control.ModifierKeys==((int)Keys.Shift+(int)Keys.Control))
             {
                 if (WindowsAPI.GetCursorPos(ref p))
                 {
@@ -57,7 +57,7 @@ namespace WindowOnTop.ViewModel
                 }
             }
 
-            if (e.KeyValue == (int)Keys.R && (int)Control.ModifierKeys == ((int)Keys.Alt + (int)Keys.Control))
+            if (e.KeyValue == (int)Keys.R && (int)Control.ModifierKeys == ((int)Keys.Shift + (int)Keys.Control))
             {
                 if (WindowsAPI.GetCursorPos(ref p))
                 {
