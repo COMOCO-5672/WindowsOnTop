@@ -55,29 +55,26 @@ namespace WindowOnTop.Util
         /// <returns></returns>
         private static PointF bezier_interpolation_func(float t, PointF[] points, int count)
         {
-            PointF pointF = new PointF();
+            if (points.Length < 1)  // 一个点都没有
+                throw new ArgumentOutOfRangeException();
 
-            float[] part = new float[count];
-
-            float sum_x = 0, sum_y = 0;
-
-            for (int i = 0; i < count; i++)
+            PointF[] tmp_points = new PointF[count];
+            for (int i = 1; i < count; ++i)
             {
-                ulong tmp;
-
-                int n_order = count - 1;
-
-                tmp = calc_combination_number(n_order, i);
-
-                sum_x += (float)(tmp * points[i].X * Math.Pow((1 - t), n_order - i) * Math.Pow(t, i));
-
-                sum_y += (float)(tmp * points[i].Y * Math.Pow((1 - t), n_order - i) * Math.Pow(t, i));
+                for (int j = 0; j < count - i; ++j)
+                {
+                    if (i == 1) // 计算+搬运数据,在计算的时候不要污染源数据
+                    {
+                        tmp_points[j].X = (float)(points[j].X * (1 - t) + points[j + 1].X * t);
+                        tmp_points[j].Y = (float)(points[j].Y * (1 - t) + points[j + 1].Y * t);
+                        continue;
+                    }
+                    tmp_points[j].X = (float)(tmp_points[j].X * (1 - t) + tmp_points[j + 1].X * t);
+                    tmp_points[j].Y = (float)(tmp_points[j].Y * (1 - t) + tmp_points[j + 1].Y * t);
+                }
             }
-            pointF.X = sum_x;
+            return tmp_points[0];
 
-            pointF.Y = sum_y;
-
-            return pointF;
         }
 
         /// <summary>
