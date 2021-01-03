@@ -77,7 +77,9 @@
     </ApplicationDefinition>
     <Compile Include="Model\Node.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Util\Bezier.cs" />
     <Compile Include="Util\KeyBoardHook.cs" />
+    <Compile Include="Util\XySys.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Windows\WindowsAPI.cs" />

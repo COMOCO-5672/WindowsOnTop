@@ -12,6 +12,15 @@
         <Binding Path="Main" Source="{StaticResource Locator}"/>
     </Window.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--region 无限分级-->
         <Grid.Resources>
             <HierarchicalDataTemplate DataType="{x:Type model:Node}" ItemsSource="{Binding Nodes}">
                 <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
@@ -19,6 +28,15 @@
                 </StackPanel>
             </HierarchicalDataTemplate>
         </Grid.Resources>
-        <TreeView Name="TreeView"/>
+        <!--<TreeView Name="TreeView"/>-->
+
+        <!--#endregion-->
+        <StackPanel x:Name="DRStackPanel"
+                    Grid.Row="0" Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Width="200"
+                    Height="200"
+        ></StackPanel>
     </Grid>
 </Window>
