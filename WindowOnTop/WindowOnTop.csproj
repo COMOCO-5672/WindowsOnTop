@@ -79,6 +79,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Util\Bezier.cs" />
     <Compile Include="Util\KeyBoardHook.cs" />
+    <Compile Include="Util\TaskBarUtil.cs" />
     <Compile Include="Util\XySys.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -125,6 +126,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
