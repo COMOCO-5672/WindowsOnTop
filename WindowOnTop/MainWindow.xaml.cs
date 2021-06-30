@@ -29,17 +29,21 @@ namespace WindowOnTop
         {
             InitializeComponent();
 
-            XySys xySys = new XySys();
+            #region 绘制网格
 
-            var mySys = xySys.CreateCanvas((int)DRStackPanel.Width, 10);
+            // XySys xySys = new XySys();
+            // var mySys = xySys.CreateCanvas((int)DRStackPanel.Width, 10);
+            // DRStackPanel.Children.Add(mySys);
 
-            //DRStackPanel.Children.Add(mySys);
+            #endregion
+
+            #region 绘制贝塞尔曲线
 
             PointF[] pointList = new PointF[] { new PointF(0.3f, 0.4f), new PointF(200, 200), new PointF(50.3f, 103.2f) };
 
             PointF[] aa = Bezier.draw_bezier_curves(pointList, pointList.Length, 0.001f);
 
-            List<Point> points= new List<Point>();
+            List<Point> points = new List<Point>();
 
             foreach (var t in aa)
             {
@@ -57,9 +61,17 @@ namespace WindowOnTop
 
             polyline.StrokeThickness = 2;
 
-            points?.ForEach(x=>{ polyline.Points.Add(x); });
+            points?.ForEach(x => { polyline.Points.Add(x); });
 
             DRStackPanel.Children.Add(polyline);
+
+            #endregion
+
+            #region 
+
+            
+
+            #endregion
         }
     }
 }
